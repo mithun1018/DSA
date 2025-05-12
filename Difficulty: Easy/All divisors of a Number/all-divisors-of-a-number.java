@@ -28,11 +28,23 @@ System.out.println("~");
 class Solution {
     public static void print_divisors(int n) {
         // code here
-        for(int i=1;i<=n;i++){
+        ArrayList<Integer> arr=new ArrayList<>();
+        for(int i=1;i<=Math.sqrt(n);i++){
            if(n%i == 0){
-               System.out.print(i+" ");
+            //   System.out.print(i+" ");
+               arr.add(i);
+               if(n / i != i)
+               {
+                //   System.out.print(n/i + " ");
+                   arr.add(n/i);
+               }
            } 
         }
+        Collections.sort(arr);
+        for(int i:arr){
+            System.out.print(i+" ");
+        }
+        
         
     }
 }
