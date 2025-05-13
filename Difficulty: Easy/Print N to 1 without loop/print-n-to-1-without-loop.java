@@ -26,13 +26,13 @@ class Solution {
         if(i==n){
             return;
         }
-        System.out.print(i+" ");
-        i--;
+        i++;
         print(i,n);
+        System.out.print(i+" ");
     }
     void printNos(int N) {
         // code here
-        print(N,0);
+        print(0,N);
         
     }
 }
