@@ -1,21 +1,20 @@
 class Solution {
-        boolean rec(int n,boolean ans){
+        boolean rec(int n){
         if(n==1){
-            return ans;
+            return true;
         }
         if(n%4!=0){
-            ans=false;
-            return ans;
+            return false;
         }
         n=n/4;
-        return rec(n,ans);
+        return rec(n);
     }
     public boolean isPowerOfFour(int n) {
            if(n==0){
             return false;
         }
 
-        return rec(n,true);
+        return rec(n);
         
     }
 }
