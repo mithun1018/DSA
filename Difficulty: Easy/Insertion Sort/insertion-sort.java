@@ -41,16 +41,23 @@ class Main {
 
 class Solution {
     // Please change the array in-place
-    public void insertionSort(int arr[]) {
-        // code here
-        for(int i=0;i<arr.length;i++){
-            int j=i;
-            while(j>0 && arr[j]<arr[j-1]){
+    void rec(int arr[],int i,int k){
+        if(i==k){
+            return;
+        }
+        int j=i;
+         while(j>0 && arr[j]<arr[j-1]){
                 int temp=arr[j];
                 arr[j]=arr[j-1];
                 arr[j-1]=temp;
                 j--;
             }
-        }
+            rec(arr,i+1,k);
+        
+    }
+    public void insertionSort(int arr[]) {
+        // code here
+        int k=arr.length;
+        rec(arr,0,k);
     }
 }
