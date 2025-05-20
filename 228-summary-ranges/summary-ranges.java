@@ -1,50 +1,48 @@
 class Solution {
     public List<String> summaryRanges(int[] nums) {
-
-        ArrayList<String> result = new ArrayList<>();
-         if(nums.length<1){
-                return result;
-            }
-        String temp = "";
-        boolean flag = true;
-        boolean flagnew = true;
-        for(int i=0;i<nums.length-1;i++){
-           
-            
-            if(nums[i] != nums[i+1]-1){
-                if(i==0){
-                    temp+=nums[i];
-                }
-                else{
-                     temp+=nums[i];
-                }
-               
-                result.add(temp);
-                temp="";
-                flag = true;
-                flagnew = true;
-                continue;
-            }
-           
-
-
-            if(flagnew){
-                temp+=nums[i];
-                flagnew=false;
-            }
-
-            
-            
-            
-
-            if(flag && temp.length()>=1){
-                flag = false;
-                temp+="->";
-            }
-
+        ArrayList<String> arr=new ArrayList<>();
+        if(nums.length==0){
+            return arr;
         }
-        temp+=nums[nums.length-1];
-        result.add(temp);
-        return result;
+        if(nums.length==1){
+            arr.add(String.valueOf(nums[0]));
+            return arr;
+        }
+        int i=0;
+        boolean flag=false;
+        boolean stFlag=false;
+        String s="";
+        while(i<nums.length-1){
+            
+            if(s.length()==0){
+                s+=nums[i];
+            }
+            int temp=nums[i];
+            if(nums[i+1]==temp+1){
+                stFlag=true;
+                flag=true;
+            }
+            else{
+                if(flag){
+                    s+="->"+nums[i];
+                }
+                arr.add(s);
+                s="";
+                stFlag=false;
+                flag=false;
+            }
+            i++;
+        }
+         if(flag){
+                    s+="->"+nums[i];
+        }
+        else{
+            s+=nums[i];
+        }
+        
+        arr.add(s);
+
+        return arr;
+        
     }
 }
