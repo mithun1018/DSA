@@ -9,7 +9,7 @@ class Solution {
             if(nums[i]==1){
                 count++;
             }else{
-                // max=Math.max(max,count);
+                 max=Math.max(max,count);
                 count=0;
             }
             max=Math.max(max,count);
