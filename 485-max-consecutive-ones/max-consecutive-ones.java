@@ -12,8 +12,9 @@ class Solution {
                  max=Math.max(max,count);
                 count=0;
             }
-            max=Math.max(max,count);
+          
         }
+          max=Math.max(max,count);
         return max;
         
     }
