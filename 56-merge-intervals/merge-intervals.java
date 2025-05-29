@@ -1,28 +1,40 @@
 class Solution {
     public int[][] merge(int[][] intervals) {
-        Comparator<int[]> arr=new Comparator<>(){
-            public int compare(int a[],int b[]){
-                int dif=a[0]-b[0];
-                return dif;
-            }
-        };
-        Arrays.sort(intervals,arr);
-        int[][] ans=new int[intervals.length][2];
-        int index=0;
+       int max = 0;
+       for (int i=0; i<intervals.length; i++){
+        max = Math.max(max,intervals[i][0]);
+       }
 
-        for(int i=0;i<intervals.length;i++){
-            int start=intervals[i][0];
-            int end=intervals[i][1];
-            if(index==0 || ans[index-1][1]<start){
-                ans[index][0]=start;
-                ans[index][1]=end;
-                index++;
-            }else{
-                ans[index-1][1]=Math.max(end,ans[index-1][1]);
-            }
+       int mp[] = new int[max+1];
+       for(int i=0; i<intervals.length; i++){
+        mp[intervals[i][0]] = Math.max(mp[intervals[i][0]],intervals[i][1]+1);
+       }
+
+       int r = 0;
+       int have = -1;
+       int intervalStart = -1;
+       for(int i=0; i<mp.length; i++){
+        if(mp[i] != 0){
+            if(intervalStart == -1) intervalStart = i;
+            have = Math.max(mp[i]-1,have);
         }
-       
-        return  Arrays.copyOf(ans,index);
-        
+        if(have == i){
+            intervals[r++] = new int[] {intervalStart,have};
+            have = -1;
+            intervalStart = -1;
+        }
+       }
+
+       if(intervalStart != -1){
+        intervals[r++] = new int[] {intervalStart,have};
+       }
+       if(intervals.length == r) return intervals;
+
+       int res[][] = new int[r][];
+       for(int i=0; i<res.length; i++){
+        res[i] = intervals[i];
+       }
+
+       return res;
     }
 }
