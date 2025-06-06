@@ -1,22 +1,23 @@
 class Solution {
-    public int search(int[] nums, int target) {
-        return rec(nums,target,0,nums.length-1);
+    public int search(int[] arr, int target) {
+        int low=0;
+        int high=arr.length-1;
+        int ans=-1;
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]==target){
+                return mid;
+            }
+            if(arr[mid]>target){
+                // ans=mid;
+                high=mid-1;
+                
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return ans;
         
-    }
-    public static int rec(int[] nums,int target,int low,int high){
-        if(low>high){
-            return -1;
-        }
-        int mid=(low+high)/2;
-        if(nums[mid]==target){
-            return mid;
-        }
-        else if(nums[mid]<target){
-            return rec(nums,target,mid+1,high);
-        }
-         else if(nums[mid]>target){
-            return rec(nums,target,low,mid-1);
-        }
-        return -1;
     }
 }
