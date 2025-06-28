@@ -10,21 +10,19 @@
  * }
  */
 public class Solution {
+
     public boolean hasCycle(ListNode head) {
-        ListNode temp=head;
-        if(head == null){
-            return false;
-        }
-        ArrayList<ListNode> arr=new ArrayList<>();
-        while(temp.next != null){
-            if(!(arr.contains(temp.next))){
-                arr.add(temp.next);
-            }else{
-                return true;
-            }
-             temp=temp.next;
-        }
-        return false;
+        if(head == null) return false; 
+        if(head.next == null) return false; 
+
+         ListNode first=head;
+         ListNode sec=head;
+         while(sec != null && sec.next!=null){
+            first=first.next;
+            sec=sec.next.next;
+            if(first == sec) return true;
+         }
+         return false;
         
     }
 }
