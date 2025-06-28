@@ -11,16 +11,23 @@
  */
 public class Solution {
     public ListNode detectCycle(ListNode head) {
-        ListNode temp=head;
-        ArrayList<ListNode> arr=new ArrayList<>();
-        while(temp !=null){
-            if(!(arr.contains(temp))){
-                arr.add(temp);
-            }else{
-                return temp;
+
+        if(head == null) return head; 
+         ListNode first=head;
+         ListNode sec=head;
+         while(sec != null && sec.next!=null){
+            first=first.next;
+            sec=sec.next.next;
+            if(first == sec){
+                first=head;
+                while(first != sec){
+                    first=first.next;
+                    sec=sec.next;
+                }
+                return sec;
             }
-            temp=temp.next;
-        }
-        return null;
+         }
+         return null;
+        
     }
 }
