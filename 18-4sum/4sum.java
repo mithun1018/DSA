@@ -8,7 +8,7 @@ class Solution {
             }
             for(int j=i+1;j<nums.length;j++){
                 if(j>i+1 && nums[j]==nums[j-1]){
-                continue;
+                    continue;
                 }
                 int k=j+1;
                 int l=nums.length-1;
@@ -19,7 +19,8 @@ class Solution {
                     sum+=nums[l];
                     if(sum<target){
                         k++;
-                    }else if(sum>target){
+                    }
+                    else if(sum>target){
                         l--;
                     }else{
                         ArrayList<Integer> arr=new ArrayList<>();
@@ -27,25 +28,20 @@ class Solution {
                         arr.add(nums[j]);
                         arr.add(nums[k]);
                         arr.add(nums[l]);
-                        out.add(arr);
                         k++;
                         l--;
+                        out.add(arr);
                         while(k<l && nums[l]==nums[l+1]){
                             l--;
                         }
                         while(k<l && nums[k]==nums[k-1]){
                             k++;
                         }
-                        
-
                     }
-
                 }
-
 
             }
         }
         return out;
-        
     }
 }
