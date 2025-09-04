@@ -5,7 +5,7 @@ class Solution {
         if(dis1 > dis2){
             return 2;
         }
-        if(dis1 < dis2){
+        else if(dis1 < dis2){
             return 1;
         }
         return 0;
