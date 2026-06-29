@@ -1,23 +1,27 @@
 class Solution {
     public int reverse(int x) {
-            boolean minus= true;
-  
-    if(x<0){
-        minus=false;
-        x*=-1;
-    }
-    StringBuilder s=new StringBuilder(String.valueOf(x));
-    try{
-        int output=Integer.parseInt(s.reverse().toString());
-    if(!minus){
-         output*=-1;
-    }
-    return output;
-    }
-    catch(Exception e){
-        return 0;
-    }
-    
+        int ans = 0;
+        boolean flag = false;
 
+        if (x < 0) {
+            if (x == Integer.MIN_VALUE) return 0;
+            x *= -1;
+            flag = true;
+        }
+
+        while (x > 0) {
+            int lastDig = x % 10;
+
+            if (ans > (Integer.MAX_VALUE - lastDig) / 10) {
+                return 0;
+            }
+
+            ans = ans * 10 + lastDig;
+            x = x / 10;
+        }
+
+        if (flag) ans *= -1;
+
+        return ans;
     }
 }
