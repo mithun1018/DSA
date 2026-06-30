@@ -1,7 +1,11 @@
 class Solution {
     public static int countDigits(int n) {
         // Code here
-         String s = n + "";
-        return s.length();
+        int count = 0;
+        while(n > 0){
+            n = n / 10;
+            count++;
+        }
+        return count;
     }
 }
